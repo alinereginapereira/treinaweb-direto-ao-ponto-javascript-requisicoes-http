@@ -1,28 +1,33 @@
-const controller = new AbortController();
+// console.log(window.fetch)
+const { fetch: origFetch } = window;
 
-async function getAlunos() {
-    const url = new URL("/api/alunos?id=oF8pTXvzVZLBdW6g", "http://localhost:3002")
+window.fetch = async function (...args) {
+    console.log("Fetch com argumentos: ", args);
+    const response = await origFetch(...args);
 
-    const myRequest = new Request(url, {
-        method: "GET",
-        headers: {
-            Accept: 'application/json',
-            "Accept-Language": "pt-BR"
-        },
-        signal: controller.signal
-    });
-    return await fetch(myRequest)
-        .then((response) => {
 
-            return response.json();
-        }).then((data) => {
-            console.log(data);
-            return data;
-        });
+    response
+        .clone()
+        .json()
+        .then((data) => console.log("response interceptada: ", data))
+        .catch(err => console.log(err));
+
+
+    return {
+        ok: true,
+        status: 200,
+        json: async () => ({
+            nome: "ariel"
+        })
+    }
 }
 
 
-getAlunos();
-setTimeout(() => {
-    controller.abort();
-}, 2000)
+fetch("http://localhost:3002/api/alunos")
+    .then((response) => {
+        console.log("fetch: ", response)
+        return response.json();
+    })
+    .then((data) => {
+        console.log(data);
+    })
