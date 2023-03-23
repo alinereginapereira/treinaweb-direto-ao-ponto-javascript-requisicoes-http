@@ -12,4 +12,5 @@ async function getAlunos() {
 }
 
 
+
 getAlunos();
