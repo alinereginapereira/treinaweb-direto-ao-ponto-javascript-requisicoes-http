@@ -68,7 +68,6 @@ async function editarValorAluno() {
         idade: 30,
     }
 
-
     fetch("http://localhost:3002/api/alunos?" + new URLSearchParams({
         id: "izEpTZSPnqntc7WR",
         nome: "ariel+sardinha"
@@ -84,3 +83,18 @@ async function editarValorAluno() {
             console.log(data);
         })
 }
+
+
+async function deletarAluno() {
+    return fetch("http://localhost:3002/api/alunos?" + new URLSearchParams({
+        id: "izEpTZSPnqntc7WR"
+    }), {
+        method: "DELETE"
+    })
+        .then((response) => response.json)
+        .then((data) => {
+            console.log(data);
+        })
+}
+
+// deletarAluno();
