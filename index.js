@@ -61,3 +61,26 @@ async function editarAluno() {
             console.log(data);
         })
 }
+
+
+async function editarValorAluno() {
+    const aluno = {
+        idade: 30,
+    }
+
+
+    fetch("http://localhost:3002/api/alunos?" + new URLSearchParams({
+        id: "izEpTZSPnqntc7WR",
+        nome: "ariel+sardinha"
+    }), {
+        method: "PATH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(aluno),
+    })
+        .then(response => response.json()
+        ).then((data) => {
+            console.log(data);
+        })
+}
