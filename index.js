@@ -1,4 +1,5 @@
-// oF8pTXvzVZLBdW6g
+const controller = new AbortController();
+
 async function getAlunos() {
     const url = new URL("/api/alunos?id=oF8pTXvzVZLBdW6g", "http://localhost:3002")
 
@@ -8,7 +9,7 @@ async function getAlunos() {
             Accept: 'application/json',
             "Accept-Language": "pt-BR"
         },
-
+        signal: controller.signal
     });
     return await fetch(myRequest)
         .then((response) => {
@@ -22,3 +23,6 @@ async function getAlunos() {
 
 
 getAlunos();
+setTimeout(() => {
+    controller.abort();
+}, 2000)
