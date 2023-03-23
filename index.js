@@ -1,19 +1,15 @@
-// recursos
-// Isto define o recurso que você deseja buscar. Isto pode ser:
+// izEpTZSPnqntc7WR
+async function getAlunos() {
+    return await fetch("http://localhost:3002/api/alunos")
+        .then((response) => {
+            console.log(response);
+            console.log(response.headers.get("Date"))
+            return response.json();
+        }).then((data) => {
+            console.log(data);
+            return data;
+        });
+}
 
-// configurações
-// Um objeto contendo quaisquer configurações
-// customizadas que você deseja aplicar à solicitação
 
-// fetch(resource, init);
-
-// BaseUrl = http://localhost:3002
-// Endpoint = /api/alunos
-// Query ou Parans = qualquer coisa após p "?" "/alunos?id=123&nome=ariel"
-
-
-fetch("http://localhost:3002/api/alunos?", { // recursos
-    method: "GET", // O método da requisição
-    headers: { 'Content-Type': 'application/json' }, // cabeçalho da requisição
-    body: JSON.stringify(novosDadosAluno), // corpo da requisição
-})
+getAlunos();
