@@ -1,16 +1,24 @@
-// izEpTZSPnqntc7WR
+// oF8pTXvzVZLBdW6g
 async function getAlunos() {
-    return await fetch("http://localhost:3002/api/alunos")
+    const url = new URL("/api/alunos?id=oF8pTXvzVZLBdW6g", "http://localhost:3002")
+
+    const myRequest = new Request(url, {
+        method: "GET",
+        headers: {
+            Accept: 'application/json',
+            "Accept-Language": "pt-BR"
+        },
+
+    });
+    return await fetch(myRequest)
         .then((response) => {
-            console.log(response);
-            console.log(response.headers.get("Date"))
+
             return response.json();
         }).then((data) => {
             console.log(data);
             return data;
         });
 }
-
 
 
 getAlunos();
